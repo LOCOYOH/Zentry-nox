@@ -84,13 +84,12 @@
         .section-title span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* Tarjetas Servicios (CON FIX PARA EL BUG DE RENDERIZADO) */
+        /* Tarjetas Servicios */
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
             transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
-            transform: translateZ(0); /* ESTA ES LA LÍNEA QUE ARREGLA EL BUG */
-            backface-visibility: hidden; /* ESTA TAMBIÉN AYUDA AL FIX */
+            transform: translateZ(0); backface-visibility: hidden;
         }
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
         .card:hover::before { transform: scaleX(1); }
@@ -142,10 +141,20 @@
         .btn-whatsapp-large {
             display: inline-flex; align-items: center; justify-content: center; gap: 12px;
             padding: 18px 30px; background: #25d366; color: white; border-radius: 12px; font-weight: bold; font-size: 1.1rem;
-            text-decoration: none; transition: all 0.3s; margin-bottom: 40px;
+            text-decoration: none; transition: all 0.3s; margin-bottom: 20px;
         }
         .btn-whatsapp-large:hover { background: #128c7e; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
         .btn-whatsapp-large i { font-size: 1.5rem; }
+
+        /* ESTILOS DEL CÓDIGO QR */
+        .qr-box {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 40px;
+            background: rgba(17, 24, 39, 0.5); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+            max-width: max-content;
+        }
+        .qr-box img { width: 80px; height: 80px; border-radius: 8px; background: white; padding: 5px;}
+        .qr-text p { margin: 0 0 5px 0; color: var(--text-main); font-weight: bold; font-size: 0.95rem; font-family: 'Space Grotesk', sans-serif; }
+        .qr-text span { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; display: block;}
 
         .social-box p { font-weight: bold; color: var(--accent); margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;}
         .social-links-large { display: flex; gap: 20px; }
@@ -227,7 +236,14 @@
             .contact-wrapper { grid-template-columns: 1fr; padding: 30px; } 
             .btn-whatsapp-large { width: 100%; }
         }
-        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } .case-card { width: 300px; padding: 20px; } .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; } }
+        /* AQUI SE OCULTA EL QR EN CELULARES */
+        @media (max-width: 768px) { 
+            nav { padding: 20px; } 
+            .img-container { height: 250px; } 
+            .case-card { width: 300px; padding: 20px; } 
+            .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; } 
+            .qr-box { display: none; } 
+        }
     </style>
 </head>
 <body>
@@ -338,6 +354,14 @@
                     <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20vengo%20de%20su%20página%20web%20y%20me%20gustaría%20una%20cotización." target="_blank" class="btn-whatsapp-large">
                         <i class="fa-brands fa-whatsapp"></i> Iniciar Chat en WhatsApp
                     </a>
+
+                    <div class="qr-box">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20vengo%20de%20su%20página%20web%20y%20me%20gustaría%20una%20cotización." alt="Escanear WhatsApp">
+                        <div class="qr-text">
+                            <p>¿Estás en PC?</p>
+                            <span>Escanea el código con tu celular<br>para abrir el chat al instante.</span>
+                        </div>
+                    </div>
                     
                     <div class="social-box">
                         <p>Nuestras Redes Sociales:</p>
@@ -556,14 +580,10 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Muestra el Pop-up de confirmación
                         modal.classList.add('active');
-                        
-                        // Limpia el formulario
                         contactForm.reset();
                         detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
                         
-                        // Restaura el botón
                         btn.innerHTML = originalText;
                         btn.style.opacity = '1';
                         btn.style.pointerEvents = 'auto';
