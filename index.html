@@ -53,15 +53,26 @@
         }
         .subtitle-box {
             background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; max-width: 700px;
-            margin-bottom: 40px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .subtitle { font-size: 1.1rem; color: #fff; line-height: 1.6; font-weight: 400; }
 
+        /* BOTONES HERO */
+        .hero-buttons {
+            display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px);
+        }
         .btn-primary {
             padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.3s ease; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px); border: none; cursor: pointer; display: inline-block;
+            transition: all 0.3s ease; border: none; cursor: pointer;
         }
         .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 246, 255, 0.6); transform: translateY(-5px); }
+        
+        .btn-secondary {
+            padding: 15px 40px; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.3s ease; cursor: pointer;
+        }
+        .btn-secondary:hover { background: rgba(0, 246, 255, 0.1); box-shadow: 0 0 20px rgba(0, 246, 255, 0.4); transform: translateY(-5px); }
 
         .coverage-banner {
             background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
@@ -76,7 +87,7 @@
         .section-title span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* Tarjetas Servicios (Cliqueables) */
+        /* Tarjetas Servicios */
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
             backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
@@ -89,10 +100,8 @@
         .card p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 20px; }
         .read-more { color: var(--accent); font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
 
-        /* Tarjetas Filosofía (No cliqueables) */
-        .card-static {
-            background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; text-align: center;
-        }
+        /* Tarjetas Filosofía */
+        .card-static { background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; text-align: center; }
         .card-static i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
         .card-static h3 { font-size: 1.2rem; margin-bottom: 10px; }
         .card-static p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
@@ -153,12 +162,17 @@
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* WhatsApp y Footer */
+        /* WhatsApp, Redes y Footer */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); }
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; color: var(--text-muted); width: 100%; }
+        
+        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; color: var(--text-muted); width: 100%; background: #010308;}
+        
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; font-size: 1.8rem; }
+        .social-links a { color: var(--text-muted); transition: color 0.3s, transform 0.3s; text-decoration: none; }
+        .social-links a:hover { color: var(--accent); transform: scale(1.2) translateY(-5px); }
 
-        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } .case-card { width: 300px; padding: 20px; } }
+        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } .case-card { width: 300px; padding: 20px; } .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; } }
     </style>
 </head>
 <body>
@@ -173,7 +187,11 @@
             <div class="subtitle-box">
                 <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento de hardware, software en equipo de computo y programas de automatización a medida para potenciar tu entorno.</p>
             </div>
-            <button class="btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">Ver Servicios</button>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">Ver Servicios</button>
+                <button class="btn-secondary" onclick="document.getElementById('presupuesto').scrollIntoView({behavior: 'smooth'})">Cotizar Ahora</button>
+            </div>
         </header>
 
         <div class="coverage-banner">
@@ -292,7 +310,7 @@
 
         <div id="detail-cctv" class="detail-content hidden">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
+                <img src="https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
             </div>
             <h2>Sistemas de <span>Seguridad y CCTV</span></h2>
             <p>Protegemos tu patrimonio con tecnología de vanguardia. Nos enfocamos en realizar instalaciones limpias, estéticas y altamente funcionales para que tengas el control total desde la palma de tu mano.</p>
@@ -331,6 +349,11 @@
     </div>
 
     <footer>
+        <div class="social-links">
+            <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
         <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
         <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
     </footer>
