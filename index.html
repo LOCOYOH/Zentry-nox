@@ -62,16 +62,13 @@
             display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
             animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px);
         }
-        .btn-primary {
-            padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        .btn-primary, .btn-secondary {
+            padding: 15px 40px; border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
             transition: all 0.3s ease; border: none; cursor: pointer;
         }
+        .btn-primary { background: var(--accent); color: var(--bg-dark); }
         .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 246, 255, 0.6); transform: translateY(-5px); }
-        
-        .btn-secondary {
-            padding: 15px 40px; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.3s ease; cursor: pointer;
-        }
+        .btn-secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
         .btn-secondary:hover { background: rgba(0, 246, 255, 0.1); box-shadow: 0 0 20px rgba(0, 246, 255, 0.4); transform: translateY(-5px); }
 
         .coverage-banner {
@@ -106,47 +103,12 @@
         .card-static h3 { font-size: 1.2rem; margin-bottom: 10px; }
         .card-static p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        /* Galería / Portafolio Visual */
+        /* Galería */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .gallery-img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s; }
         .gallery-img:hover { transform: scale(1.03); border-color: var(--accent); }
 
-        /* Barra de Tecnologías */
-        .tech-bar { background: rgba(17, 24, 39, 0.5); padding: 50px 20px; text-align: center; border-top: 1px solid rgba(0, 246, 255, 0.1); border-bottom: 1px solid rgba(0, 246, 255, 0.1); margin: 60px 0; }
-        .tech-icons { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.7; font-size: 1.2rem; font-family: 'Space Grotesk', sans-serif; }
-        .tech-icons span { display: flex; align-items: center; gap: 10px; }
-        .tech-icons i { font-size: 1.8rem; }
-        .legal-text { font-size: 0.7rem; color: var(--text-muted); margin-top: 25px; opacity: 0.5; font-style: italic; }
-
-        /* Formulario */
-        .form-container { background: var(--bg-card); padding: 40px; border-radius: 20px; max-width: 600px; margin: auto; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 15px; background: rgba(3, 7, 18, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: var(--text-main); font-family: 'Montserrat', sans-serif; transition: all 0.3s; }
-        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(0,246,255,0.2); }
-        textarea.form-control { resize: vertical; min-height: 100px; }
-        .btn-submit { width: 100%; padding: 15px; background: var(--accent); color: var(--bg-dark); border: none; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
-        .btn-submit:hover { background: #fff; }
-
-        /* VISTAS DE DETALLE */
-        #detail-view { padding-top: 120px; min-height: 100vh; padding-bottom: 50px; max-width: 1000px; margin: auto; padding-left: 20px; padding-right: 20px; animation: fadeIn 0.5s ease; }
-        .btn-back { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 0.9rem; transition: all 0.3s; }
-        .btn-back:hover { background: var(--accent); color: var(--bg-dark); }
-
-        .img-container { width: 100%; height: 450px; border-radius: 20px; margin-bottom: 40px; overflow: hidden; }
-        .detail-img { width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); }
-        
-        .detail-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main); }
-        .detail-content h2 span { color: var(--accent); }
-        .detail-content p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
-        
-        .detail-list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .detail-list li { background: rgba(17, 24, 39, 0.5); padding: 25px; border-radius: 15px; border-left: 3px solid var(--accent); display: flex; flex-direction: column; gap: 10px; }
-        .detail-list li strong { color: var(--text-main); font-size: 1.1rem; }
-        .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
-        .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
-
-        /* SECCIÓN DE CASOS DE ÉXITO */
+        /* Casos de Éxito */
         .marquee-wrapper { background: rgba(17, 24, 39, 0.3); border-top: 1px solid rgba(0, 246, 255, 0.1); border-bottom: 1px solid rgba(0, 246, 255, 0.1); padding: 50px 0; overflow: hidden; position: relative; margin-top: 40px; margin-bottom: 40px; }
         .marquee-content { display: flex; width: max-content; animation: scrollMarquee 450s linear infinite; }
         .marquee-content:hover { animation-play-state: paused; }
@@ -156,22 +118,80 @@
 
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Animaciones base */
+        /* Barra de Tecnologías */
+        .tech-bar { background: rgba(17, 24, 39, 0.5); padding: 50px 20px; text-align: center; border-top: 1px solid rgba(0, 246, 255, 0.1); border-bottom: 1px solid rgba(0, 246, 255, 0.1); margin: 60px 0; }
+        .tech-icons { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.7; font-size: 1.2rem; font-family: 'Space Grotesk', sans-serif; }
+        .tech-icons span { display: flex; align-items: center; gap: 10px; }
+        .tech-icons i { font-size: 1.8rem; }
+        .legal-text { font-size: 0.7rem; color: var(--text-muted); margin-top: 25px; opacity: 0.5; font-style: italic; }
+
+        /* NUEVA SECCIÓN UNIFICADA: COTIZA Y CONECTA */
+        .contact-wrapper {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; max-width: 1100px; margin: auto;
+            background: var(--bg-card); border-radius: 20px; padding: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .contact-info { display: flex; flex-direction: column; justify-content: center; }
+        .contact-info h3 { font-size: 2rem; margin-bottom: 20px; color: var(--text-main); font-family: 'Space Grotesk', sans-serif;}
+        .contact-info p { color: var(--text-muted); line-height: 1.6; margin-bottom: 30px; }
+        
+        .btn-whatsapp-large {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 18px 30px; background: #25d366; color: white; border-radius: 12px; font-weight: bold; font-size: 1.1rem;
+            text-decoration: none; transition: all 0.3s; margin-bottom: 40px;
+        }
+        .btn-whatsapp-large:hover { background: #128c7e; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,211,102,0.4); }
+        .btn-whatsapp-large i { font-size: 1.5rem; }
+
+        .social-box p { font-weight: bold; color: var(--accent); margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;}
+        .social-links-large { display: flex; gap: 20px; }
+        .social-icon {
+            width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            background: rgba(255,255,255,0.05); color: var(--text-main); font-size: 1.5rem; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .social-icon:hover { background: var(--accent); color: var(--bg-dark); transform: translateY(-5px) rotate(10deg); border-color: var(--accent);}
+
+        /* Formulario dentro del Wrapper */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
+        .form-control { width: 100%; padding: 15px; background: rgba(3, 7, 18, 0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: var(--text-main); font-family: 'Montserrat', sans-serif; transition: all 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(0,246,255,0.2); }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        .btn-submit { width: 100%; padding: 15px; background: var(--accent); color: var(--bg-dark); border: none; border-radius: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .btn-submit:hover { background: #fff; box-shadow: 0 5px 20px rgba(255,255,255,0.3); }
+
+        /* VISTAS DE DETALLE */
+        #detail-view { padding-top: 120px; min-height: 100vh; padding-bottom: 50px; max-width: 1000px; margin: auto; padding-left: 20px; padding-right: 20px; animation: fadeIn 0.5s ease; }
+        .btn-back { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 0.9rem; transition: all 0.3s; }
+        .btn-back:hover { background: var(--accent); color: var(--bg-dark); }
+        .img-container { width: 100%; height: 450px; border-radius: 20px; margin-bottom: 40px; overflow: hidden; }
+        .detail-img { width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%); }
+        .detail-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main); }
+        .detail-content h2 span { color: var(--accent); }
+        .detail-content p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
+        .detail-list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .detail-list li { background: rgba(17, 24, 39, 0.5); padding: 25px; border-radius: 15px; border-left: 3px solid var(--accent); display: flex; flex-direction: column; gap: 10px; }
+        .detail-list li strong { color: var(--text-main); font-size: 1.1rem; }
+        .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
+        .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* Botón WhatsApp Flotante (Se mantiene por conveniencia al hacer scroll) */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); width: 100%; background: #010308;}
+        
+        /* Animaciones */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* WhatsApp, Redes y Footer */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        
-        footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; color: var(--text-muted); width: 100%; background: #010308;}
-        
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; font-size: 1.8rem; }
-        .social-links a { color: var(--text-muted); transition: color 0.3s, transform 0.3s; text-decoration: none; }
-        .social-links a:hover { color: var(--accent); transform: scale(1.2) translateY(-5px); }
-
+        @media (max-width: 900px) { 
+            .contact-wrapper { grid-template-columns: 1fr; padding: 30px; } 
+            .btn-whatsapp-large { width: 100%; }
+        }
         @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } .case-card { width: 300px; padding: 20px; } .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; } }
     </style>
 </head>
@@ -190,7 +210,7 @@
             
             <div class="hero-buttons">
                 <button class="btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">Ver Servicios</button>
-                <button class="btn-secondary" onclick="document.getElementById('presupuesto').scrollIntoView({behavior: 'smooth'})">Cotizar Ahora</button>
+                <button class="btn-secondary" onclick="document.getElementById('contacto-seccion').scrollIntoView({behavior: 'smooth'})">Cotizar Ahora</button>
             </div>
         </header>
 
@@ -272,34 +292,55 @@
             <p class="legal-text">*Todos los logotipos y marcas comerciales son propiedad de sus respectivos dueños. Se muestran únicamente con fines informativos para indicar experiencia técnica y compatibilidad de hardware/software.*</p>
         </div>
 
-        <section id="presupuesto">
-            <h2 class="section-title reveal">Solicita tu <span>Presupuesto</span></h2>
-            <div class="form-container reveal">
-                <form action="https://formsubmit.co/TU-CORREO-AQUI" method="POST">
-                    <div class="form-group">
-                        <label for="nombre">Nombre o Empresa</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Juan Pérez / Farmacia Centro">
+        <section id="contacto-seccion">
+            <h2 class="section-title reveal">Cotiza y <span>Conecta</span></h2>
+            
+            <div class="contact-wrapper reveal">
+                <div class="contact-info">
+                    <h3>Hablemos de tu proyecto</h3>
+                    <p>Estamos listos para optimizar y proteger tu infraestructura. Escríbenos directamente o síguenos en nuestras redes para conocer más de nuestro trabajo diario.</p>
+                    
+                    <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20vengo%20de%20su%20página%20web%20y%20me%20gustaría%20una%20cotización." target="_blank" class="btn-whatsapp-large">
+                        <i class="fa-brands fa-whatsapp"></i> Iniciar Chat en WhatsApp
+                    </a>
+                    
+                    <div class="social-box">
+                        <p>Nuestras Redes Sociales:</p>
+                        <div class="social-links-large">
+                            <a href="#" target="_blank" class="social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" target="_blank" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" target="_blank" class="social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono / WhatsApp</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Tu número de contacto">
-                    </div>
-                    <div class="form-group">
-                        <label for="servicio">¿En qué te podemos ayudar?</label>
-                        <select id="servicio" name="servicio" class="form-control" required>
-                            <option value="">Selecciona una opción...</option>
-                            <option value="CCTV">Sistemas de Seguridad CCTV</option>
-                            <option value="Soporte PC">Soporte a Equipos de Cómputo</option>
-                            <option value="Software">Automatización y Software</option>
-                            <option value="Otro">Otro servicio / Consultoría</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="detalles">Cuéntanos un poco sobre tu proyecto</label>
-                        <textarea id="detalles" name="detalles" class="form-control" placeholder="Ej. Necesito instalar 4 cámaras en mi negocio..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Enviar Solicitud <i class="fa-solid fa-paper-plane" style="margin-left: 10px;"></i></button>
-                </form>
+                </div>
+
+                <div>
+                    <form action="https://formsubmit.co/luisangel.esquivel.armenta.a@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="nombre">Nombre o Empresa</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Juan Pérez / Empresa S.A. de C.V.">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / WhatsApp</label>
+                            <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Tu número de contacto">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">¿En qué te podemos ayudar?</label>
+                            <select id="servicio" name="servicio" class="form-control" required>
+                                <option value="">Selecciona un servicio...</option>
+                                <option value="CCTV">Sistemas de Seguridad CCTV</option>
+                                <option value="Soporte PC">Soporte a Equipos de Cómputo</option>
+                                <option value="Software">Automatización y Software</option>
+                                <option value="Otro">Otro servicio / Consultoría</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="detalles">Cuéntanos sobre tu proyecto</label>
+                            <textarea id="detalles" name="detalles" class="form-control" placeholder="Selecciona un servicio arriba para ver un ejemplo..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Enviar Solicitud <i class="fa-solid fa-paper-plane" style="margin-left: 10px;"></i></button>
+                    </form>
+                </div>
             </div>
         </section>
 
@@ -348,22 +389,17 @@
         </div>
     </div>
 
-    <footer>
-        <div class="social-links">
-            <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
-        <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
-    </footer>
-
     <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios." class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <footer>
+        <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
+    </footer>
+
     <script>
-        // 1. Efectos de aparición al hacer scroll
+        // 1. Efectos de aparición
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -373,7 +409,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Llamada inicial
+        reveal();
 
         // 2. Generador de Casos de Éxito
         const cctvTemplates = ["Instalación de [COUNT] cámaras IP 4K con monitoreo centralizado en centro logístico.", "Configuración de NVR de 32 canales y acceso remoto seguro para cadena de farmacias.", "Mantenimiento correctivo a sistema CCTV existente en oficinas corporativas, reestructurando cableado desordenado.", "Implementación de cámaras térmicas para control de acceso en bodega industrial.", "Ajuste de ángulos de visión y optimización de grabación nocturna para [COUNT] cámaras en local comercial."];
@@ -410,6 +446,29 @@
             document.getElementById('main-view').classList.remove('hidden');
             document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
         }
+
+        // 4. Lógica de Cambio Dinámico de Texto en Formulario
+        const servicioSelect = document.getElementById('servicio');
+        const detallesTextarea = document.getElementById('detalles');
+
+        servicioSelect.addEventListener('change', function() {
+            switch(this.value) {
+                case 'CCTV':
+                    detallesTextarea.placeholder = "Ej. Necesito instalar 4 cámaras en mi local con monitoreo directo desde mi celular...";
+                    break;
+                case 'Soporte PC':
+                    detallesTextarea.placeholder = "Ej. Tengo 3 computadoras que están lentas y necesitan limpieza física y de software...";
+                    break;
+                case 'Software':
+                    detallesTextarea.placeholder = "Ej. Busco un sistema en Python para registrar las ventas y el inventario de mi negocio...";
+                    break;
+                case 'Otro':
+                    detallesTextarea.placeholder = "Por favor, describe a detalle lo que tienes en mente para que podamos ayudarte...";
+                    break;
+                default:
+                    detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
+            }
+        });
     </script>
 </body>
 </html>
