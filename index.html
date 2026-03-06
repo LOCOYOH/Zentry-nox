@@ -315,12 +315,10 @@
                 </div>
 
                 <div>
-                    <form action="https://formsubmit.co/luisangel.esquivel.armenta.a@gmail.com" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/ajax/luisangel.esquivel.armenta.a@gmail.com" method="POST">
                         
-                        <input type="hidden" name="_next" value="https://locoyoh.github.io/Zentry-nox/">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="Cotización nueva - Zentry nox">
-                        <input type="hidden" name="_template" value="table">
 
                         <div class="form-group">
                             <label for="nombre">Nombre o Empresa</label>
@@ -342,7 +340,7 @@
                         </div>
                         <div class="form-group">
                             <label for="detalles">Cuéntanos sobre tu proyecto</label>
-                            <textarea id="detalles" name="detalles" class="form-control" placeholder="Selecciona un servicio arriba para ver un ejemplo..."></textarea>
+                            <textarea id="detalles" name="detalles" class="form-control" required placeholder="Selecciona un servicio arriba para ver un ejemplo..."></textarea>
                         </div>
                         <button type="submit" class="btn-submit">Enviar Solicitud <i class="fa-solid fa-paper-plane" style="margin-left: 10px;"></i></button>
                     </form>
@@ -453,7 +451,7 @@
             document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 4. Lógica de Cambio Dinámico de Texto en Formulario
+        // 4. Lógica de Cambio Dinámico de Texto
         const servicioSelect = document.getElementById('servicio');
         const detallesTextarea = document.getElementById('detalles');
 
@@ -466,7 +464,7 @@
                     detallesTextarea.placeholder = "Ej. Tengo 3 computadoras que están lentas y necesitan limpieza física y de software...";
                     break;
                 case 'Software':
-                    detallesTextarea.placeholder = "Ej. Busco un sistema en Python para registrar las ventas y el inventario de mi negocio...";
+                    detallesTextarea.placeholder = "Ej. Busco un sistema en Python para automatizar un proceso repetitivo...";
                     break;
                 case 'Otro':
                     detallesTextarea.placeholder = "Por favor, describe a detalle lo que tienes en mente para que podamos ayudarte...";
@@ -475,6 +473,62 @@
                     detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
             }
         });
+
+        // 5. NUEVO: Envío de formulario en segundo plano (NINJA MODE)
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Evita que la página te saque de tu sitio web
+                
+                const btn = this.querySelector('.btn-submit');
+                const originalText = btn.innerHTML;
+                
+                // Cambia el botón a modo carga
+                btn.innerHTML = 'Enviando... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 10px;"></i>';
+                btn.style.opacity = '0.8';
+                btn.style.pointerEvents = 'none';
+
+                fetch(this.action, {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Muestra la alerta de éxito
+                        alert("¡Tu solicitud se ha enviado con éxito! Nos pondremos en contacto contigo lo antes posible.");
+                        
+                        // Limpia el formulario
+                        contactForm.reset();
+                        detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
+                        
+                        // Pone el botón en color verde de éxito
+                        btn.innerHTML = '¡Enviado! <i class="fa-solid fa-check" style="margin-left: 10px;"></i>';
+                        btn.style.background = '#25d366';
+                        btn.style.color = '#fff';
+                        
+                        // Regresa el botón a la normalidad después de 4 segundos
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.style.background = 'var(--accent)';
+                            btn.style.color = 'var(--bg-dark)';
+                            btn.style.opacity = '1';
+                            btn.style.pointerEvents = 'auto';
+                        }, 4000);
+                    } else {
+                        throw new Error('Network response was not ok.');
+                    }
+                })
+                .catch(error => {
+                    alert("Hubo un error al enviar tu solicitud. Por favor, contáctanos directamente por WhatsApp.");
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                });
+            });
+        }
     </script>
 </body>
 </html>
