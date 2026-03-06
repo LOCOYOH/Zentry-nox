@@ -125,7 +125,7 @@
         .tech-icons i { font-size: 1.8rem; }
         .legal-text { font-size: 0.7rem; color: var(--text-muted); margin-top: 25px; opacity: 0.5; font-style: italic; }
 
-        /* NUEVA SECCIÓN UNIFICADA: COTIZA Y CONECTA */
+        /* CONTACTO Y COTIZACIÓN */
         .contact-wrapper {
             display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; max-width: 1100px; margin: auto;
             background: var(--bg-card); border-radius: 20px; padding: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05);
@@ -176,7 +176,7 @@
         .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
         .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
 
-        /* Botón WhatsApp Flotante (Se mantiene por conveniencia al hacer scroll) */
+        /* Botón WhatsApp Flotante global */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); }
         
@@ -316,6 +316,12 @@
 
                 <div>
                     <form action="https://formsubmit.co/luisangel.esquivel.armenta.a@gmail.com" method="POST">
+                        
+                        <input type="hidden" name="_next" value="https://locoyoh.github.io/Zentry-nox/">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="Cotización nueva - Zentry nox">
+                        <input type="hidden" name="_template" value="table">
+
                         <div class="form-group">
                             <label for="nombre">Nombre o Empresa</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Juan Pérez / Empresa S.A. de C.V.">
