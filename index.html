@@ -11,6 +11,7 @@
         :root {
             --bg-dark: #030712;
             --bg-card: rgba(17, 24, 39, 0.7);
+            --bg-case: rgba(3, 7, 18, 0.9);
             --accent: #00f6ff;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -42,7 +43,7 @@
         header {
             height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
             background: radial-gradient(circle at center, rgba(0, 246, 255, 0.05) 0%, rgba(3, 7, 18, 1) 80%), 
-                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070') no-repeat center center/cover;
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000') no-repeat center center/cover;
             padding: 20px;
         }
         h1 {
@@ -54,7 +55,6 @@
             background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; max-width: 700px;
             margin-bottom: 40px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        /* TEXTO DEL HERO CORREGIDO */
         .subtitle { font-size: 1.1rem; color: #fff; line-height: 1.6; font-weight: 400; }
 
         .btn-primary {
@@ -115,20 +115,24 @@
         .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
         .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
 
-        /* SECCIÓN DE CASOS DE ÉXITO (Marquesina Infinita - MÁS LENTA) */
+        /* SECCIÓN DE CASOS DE ÉXITO (Nuevo Carrusel Detallado) */
         .marquee-wrapper {
-            background: rgba(17, 24, 39, 0.5); border-top: 1px solid rgba(0, 246, 255, 0.2); border-bottom: 1px solid rgba(0, 246, 255, 0.2);
-            padding: 30px 0; overflow: hidden; position: relative; margin-top: 40px; margin-bottom: 40px;
-            box-shadow: inset 50px 0 50px -50px var(--bg-dark), inset -50px 0 50px -50px var(--bg-dark);
+            background: rgba(17, 24, 39, 0.3); border-top: 1px solid rgba(0, 246, 255, 0.1); border-bottom: 1px solid rgba(0, 246, 255, 0.1);
+            padding: 50px 0; overflow: hidden; position: relative; margin-top: 40px; margin-bottom: 40px;
         }
-        .marquee-content { display: flex; width: max-content; animation: scrollMarquee 300s linear infinite; } /* VELOCIDAD REDUCIDA */
+        .marquee-content { display: flex; width: max-content; animation: scrollMarquee 450s linear infinite; } /* MÁS LENTO */
         .marquee-content:hover { animation-play-state: paused; }
-        .marquee-item {
-            background: rgba(3, 7, 18, 0.8); border: 1px solid rgba(255,255,255,0.05); padding: 15px 30px;
-            margin-right: 20px; border-radius: 50px; color: var(--text-main); font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem; display: flex; align-items: center; gap: 10px; white-space: nowrap;
+        
+        .case-card {
+            background: var(--bg-case); border: 1px solid rgba(255,255,255,0.05); padding: 30px;
+            margin-right: 30px; border-radius: 20px; color: var(--text-main); font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem; width: 400px; /* Ancho fijo para las tarjetas */
+            display: flex; flex-direction: column; gap: 15px;
+            border-bottom: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .marquee-item i { color: var(--accent); }
+        .case-card-header { font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 1.1rem; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+        .case-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.9rem; }
+
         @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* WhatsApp y Footer */
@@ -140,7 +144,7 @@
         .whatsapp-float:hover { transform: scale(1.1); }
         footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; color: var(--text-muted); width: 100%; }
 
-        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } }
+        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } .case-card { width: 300px; padding: 20px; } }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -202,7 +206,7 @@
 
         <div id="detail-cctv" class="detail-content hidden">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
+                <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
             </div>
             <h2>Sistemas de <span>Seguridad y CCTV</span></h2>
             <p>Protegemos tu patrimonio con tecnología de vanguardia. Nos enfocamos en realizar instalaciones limpias, estéticas y altamente funcionales para que tengas el control total desde la palma de tu mano.</p>
@@ -286,30 +290,37 @@
     </a>
 
     <script>
-        // 1. Lógica para generar los 200 casos de éxito con MÁS CONTEXTO (generación técnica)
+        // 1. Lógica para generar los 200 casos de éxito con MÁS CONTEXTO y SIN UBICACIONES
         const cctvTemplates = [
-            "Instalación de [COUNT] cámaras IP 4K con monitoreo centralizado en [LOC]",
-            "Configuración de NVR de 32 canales y acceso remoto seguro para [COUNT] sucursales en [LOC]",
-            "Mantenimiento correctivo a sistema CCTV existente en [LOC], reestructurando cableado desordenado",
-            "Implementación de cámaras térmicas para control de acceso en [LOC]",
-            "Ajuste de ángulos de visión y optimización de grabación nocturna para [COUNT] cámaras en [LOC]"
+            "Instalación de [COUNT] cámaras IP 4K con monitoreo centralizado en centro logístico.",
+            "Configuración de NVR de 32 canales y acceso remoto seguro para cadena de farmacias.",
+            "Mantenimiento correctivo a sistema CCTV existente en oficinas corporativas, reestructurando cableado desordenado.",
+            "Implementación de cámaras térmicas para control de acceso en bodega industrial.",
+            "Ajuste de ángulos de visión y optimización de grabación nocturna para [COUNT] cámaras en local comercial."
         ];
         const pcTemplates = [
-            "Mantenimiento preventivo completo a [COUNT] equipos de oficina, incluyendo cambio de pasta térmica profunda",
-            "Actualización masiva de [COUNT] PCs en [LOC], migrando de HDD a SSD para alto rendimiento",
-            "Diagnóstico y reparación de placa base a Workstation profesional en [LOC], restaurando operatividad",
-            "Limpieza física y optimización de software a servidor crítico en [LOC]",
-            "Ensamblaje y configuración de [COUNT] estaciones de trabajo enfocadas en arquitectura para [LOC]"
+            "Mantenimiento preventivo completo a [COUNT] equipos de oficina, incluyendo cambio de pasta térmica profunda.",
+            "Actualización masiva de [COUNT] PCs en despacho de contadores, migrando de HDD a SSD para alto rendimiento.",
+            "Diagnóstico y reparación de placa base a Workstation profesional en despacho de contadores, restaurando operatividad.",
+            "Limpieza física y optimización de software a servidor crítico en clínica médica Sur.",
+            "Ensamblaje y configuración de [COUNT] estaciones de trabajo enfocadas en arquitectura para oficinas corporativas Reforma."
         ];
         const swTemplates = [
-            "Desarrollo de software en Python para control de stock en tiempo real con alertas de reabastecimiento para [LOC]",
-            "Automatización de reportes de ventas y conciliación de inventario para comercio local en [LOC]",
-            "Digitalización completa de base de datos de clientes y procesos administrativos para [LOC]",
-            "Creación de script personalizado para automatizar [COUNT] tareas repetitivas diarias en [LOC]",
-            "Soporte de software avanzado e instalación limpia de sistemas operativos para [COUNT] equipos de [LOC]"
+            "Desarrollo de software en Python para control de stock en tiempo real con alertas de reabastecimiento para centro logístico.",
+            "Automatización de reportes de ventas y conciliación de inventario para comercio local en Polanco.",
+            "Digitalización completa de base de datos de clientes y procesos administrativos para local comercial Polanco.",
+            "Creación de script personalizado para automatizar [COUNT] tareas repetitivas diarias en local comercial.",
+            "Soporte de software avanzado e instalación limpia de sistemas operativos para [COUNT] equipos de clínica médica."
         ];
 
-        const locations = ["centro logístico CDMX", "cadena de farmacias Área Metropolitana", "oficinas corporativas Reforma", "bodega industrial Tlalnepantla", "local comercial Polanco", "despacho de contadores Naucalpan", "clínica médica Sur", "escuela privada"];
+        // Definimos descripciones genéricas para el contexto
+        const genericContexts = [
+            "Optimizando la seguridad operativa diaria.",
+            "Asegurando la continuidad del negocio.",
+            "Reduciendo tiempos de inactividad técnica.",
+            "Incrementando la eficiencia administrativa.",
+            "Garantizando la integridad de los datos."
+        ];
         
         const track = document.getElementById('casos-track');
         let htmlContent = '';
@@ -317,16 +328,30 @@
         // Creamos 200 elementos repitiendo plantillas variadas
         for(let i = 0; i < 200; i++) {
             const count = Math.floor(Math.random() * 25) + 5; // 5-30 cámaras/PCs
-            const loc = locations[Math.floor(Math.random() * locations.length)];
+            const context = genericContexts[i % genericContexts.length];
             let project = "";
+            let icon = "";
             
             // Decidimos el tipo de proyecto
             const type = Math.floor(Math.random() * 3);
-            if(type === 0) project = cctvTemplates[Math.floor(Math.random() * cctvTemplates.length)].replace("[COUNT]", count).replace("[LOC]", loc);
-            else if(type === 1) project = pcTemplates[Math.floor(Math.random() * pcTemplates.length)].replace("[COUNT]", count).replace("[LOC]", loc);
-            else project = swTemplates[Math.floor(Math.random() * swTemplates.length)].replace("[COUNT]", count).replace("[LOC]", loc);
+            if(type === 0) {
+                project = cctvTemplates[Math.floor(Math.random() * cctvTemplates.length)].replace("[COUNT]", count);
+                icon = '<i class="fa-solid fa-video"></i>';
+            } else if(type === 1) {
+                project = pcTemplates[Math.floor(Math.random() * pcTemplates.length)].replace("[COUNT]", count);
+                icon = '<i class="fa-solid fa-microchip"></i>';
+            } else {
+                project = swTemplates[Math.floor(Math.random() * swTemplates.length)].replace("[COUNT]", count);
+                icon = '<i class="fa-solid fa-terminal"></i>';
+            }
 
-            htmlContent += `<div class="marquee-item"><i class="fa-solid fa-check-circle"></i> Proyecto #${i + 101}: ${project}</div>`;
+            // Creamos la tarjeta Detallada (3 líneas aproximadas)
+            htmlContent += `
+                <div class="case-card">
+                    <div class="case-card-header">${icon} Proyecto #${i + 101}</div>
+                    <p><strong>Descripción:</strong> ${project}</p>
+                    <p><strong>Impacto:</strong> ${context}</p>
+                </div>`;
         }
         
         // Duplicamos el contenido para que el carrusel sea infinito y no se corte
