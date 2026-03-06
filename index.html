@@ -26,23 +26,21 @@
             scroll-behavior: smooth;
         }
 
+        /* Utilidad para ocultar vistas */
+        .hidden { display: none !important; }
+
         /* Menú Interactivo */
         nav {
             position: fixed; top: 0; width: 100%; padding: 20px 50px;
             display: flex; justify-content: space-between; align-items: center;
-            background: transparent; z-index: 1000;
-            transition: all 0.4s ease;
-        }
-        nav.scrolled {
             background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 50px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;}
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;}
         .logo span { color: var(--accent); }
         
         .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase;}
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase; cursor: pointer;}
         .nav-links a:hover { color: var(--accent); }
 
         /* Hero Section */
@@ -55,7 +53,7 @@
         h1 {
             font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px;
             background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: fadeUp 1s ease-out forwards; opacity: 0; transform: translateY(30px);
+            animation: fadeUp 1s ease-out forwards;
         }
         .subtitle-box {
             background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px);
@@ -67,8 +65,7 @@
 
         .btn-primary {
             padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
-            transition: all 0.3s ease; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px);
-            box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            transition: all 0.3s ease; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px); border: none; cursor: pointer;
         }
         .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 246, 255, 0.6); transform: translateY(-5px); }
 
@@ -86,33 +83,40 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
         /* Tarjetas Cliqueables */
-        .card-link { text-decoration: none; color: inherit; display: block; }
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
-            backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%;
+            backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
         }
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-        .card-link:hover .card::before { transform: scaleX(1); }
-        .card-link:hover .card { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(0, 246, 255, 0.2); }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(0, 246, 255, 0.2); }
         .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
         .card h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--text-main); }
         .card p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 20px; }
         .read-more { color: var(--accent); font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
 
-        /* Secciones de Detalles Profundos */
-        .detail-box {
-            background: rgba(17, 24, 39, 0.4); border-left: 5px solid var(--accent); border-radius: 0 20px 20px 0;
-            padding: 40px; margin-bottom: 40px; scroll-margin-top: 100px; /* Evita que el menú tape el título */
-        }
-        .detail-box h3 { font-size: 1.8rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
-        .detail-box h3 i { color: var(--accent); }
-        .detail-list { list-style: none; margin-top: 20px; }
-        .detail-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); line-height: 1.6; }
-        .detail-list li i { color: var(--accent); margin-top: 5px; font-size: 0.8rem; }
-
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* VISTAS DE DETALLE (Páginas internas) */
+        #detail-view { padding-top: 120px; min-height: 100vh; padding-bottom: 50px; max-width: 1000px; margin: auto; padding-left: 20px; padding-right: 20px; animation: fadeIn 0.5s ease; }
         
+        .btn-back {
+            background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif; font-weight: bold; font-size: 0.9rem; transition: all 0.3s;
+        }
+        .btn-back:hover { background: var(--accent); color: var(--bg-dark); }
+
+        .detail-img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .detail-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main); }
+        .detail-content h2 span { color: var(--accent); }
+        .detail-content p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; }
+        
+        .detail-list { list-style: none; margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .detail-list li { background: rgba(17, 24, 39, 0.5); padding: 25px; border-radius: 15px; border-left: 3px solid var(--accent); display: flex; flex-direction: column; gap: 10px; }
+        .detail-list li strong { color: var(--text-main); font-size: 1.1rem; }
+        .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
+        .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none;
@@ -120,106 +124,143 @@
         }
         .whatsapp-float:hover { transform: scale(1.1); }
 
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; color: var(--text-muted); width: 100%; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             nav { padding: 20px; }
-            .detail-box { padding: 20px; }
+            .detail-img { height: 250px; }
         }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <nav id="navbar">
-        <div class="logo">Zentry<span>nox</span></div>
+        <div class="logo" onclick="goHome()">Zentry<span>nox</span></div>
         <ul class="nav-links">
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#detalles-profundos">Especificaciones</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a onclick="goHome()">Servicios</a></li>
+            <li><a onclick="goHome()">Especificaciones</a></li>
         </ul>
     </nav>
 
-    <header>
-        <h1>Infraestructura <br> & Seguridad</h1>
-        <div class="subtitle-box">
-            <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento de hardware y programas de automatización a medida para potenciar tu entorno.</p>
+    <div id="main-view">
+        <header>
+            <h1>Infraestructura <br> & Seguridad</h1>
+            <div class="subtitle-box">
+                <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento de hardware y programas de automatización a medida para potenciar tu entorno.</p>
+            </div>
+            <button class="btn-primary" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">Ver Servicios</button>
+        </header>
+
+        <div class="coverage-banner">
+            <h3><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Cobertura de Servicio Técnico en CDMX y Área Metropolitana</h3>
         </div>
-        <a href="#servicios" class="btn-primary">Ver Servicios</a>
-    </header>
 
-    <div class="coverage-banner reveal">
-        <h3><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Cobertura de Servicio Técnico en CDMX y Área Metropolitana</h3>
-    </div>
-
-    <section id="servicios">
-        <h2 class="section-title reveal">Servicios <span>Especializados</span></h2>
-        <div class="grid">
-            <a href="#info-cctv" class="card-link reveal">
-                <div class="card">
+        <section id="servicios">
+            <h2 class="section-title">Servicios <span>Especializados</span></h2>
+            <div class="grid">
+                <div class="card" onclick="showDetail('cctv')">
                     <i class="fa-solid fa-shield-halved"></i>
                     <h3>Sistemas CCTV</h3>
                     <p>Instalación estética de circuitos cerrados, configuración de DVR y monitoreo remoto seguro.</p>
-                    <span class="read-more">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
-            </a>
-            
-            <a href="#info-soporte" class="card-link reveal" style="transition-delay: 0.1s;">
-                <div class="card">
+                
+                <div class="card" onclick="showDetail('soporte')">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Soporte Técnico Integral</h3>
                     <p>Mantenimiento preventivo, limpieza profunda, solución a fallos de hardware y asistencia en software.</p>
-                    <span class="read-more">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
-            </a>
-            
-            <a href="#info-software" class="card-link reveal" style="transition-delay: 0.2s;">
-                <div class="card">
+                
+                <div class="card" onclick="showDetail('software')">
                     <i class="fa-solid fa-code"></i>
                     <h3>Automatización de Tareas</h3>
                     <p>Programas a medida para gestión de inventarios y procesos automáticos enfocados en comercios locales.</p>
-                    <span class="read-more">Ver detalles <i class="fa-solid fa-arrow-right"></i></span>
+                    <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
-            </a>
-        </div>
-    </section>
+            </div>
+        </section>
+    </div>
 
-    <section id="detalles-profundos">
-        <h2 class="section-title reveal">Especificaciones <span>Técnicas</span></h2>
-        
-        <div id="info-cctv" class="detail-box reveal">
-            <h3><i class="fa-solid fa-video"></i> Sistemas de Seguridad y CCTV</h3>
-            <p style="color: var(--text-muted);">Protegemos tu patrimonio con tecnología de vanguardia y cableado estético.</p>
+    <div id="detail-view" class="hidden">
+        <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver a los servicios</button>
+
+        <div id="detail-cctv" class="detail-content hidden">
+            <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
+            <h2>Sistemas de <span>Seguridad y CCTV</span></h2>
+            <p>Protegemos tu patrimonio con tecnología de vanguardia. Nos enfocamos en realizar instalaciones limpias, estéticas y altamente funcionales para que tengas el control total desde la palma de tu mano.</p>
             <ul class="detail-list">
-                <li><i class="fa-solid fa-check"></i> <strong>Instalación y Configuración:</strong> Montaje de cámaras (Analógicas o IP) y configuración de grabadores DVR/NVR.</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Monitoreo Remoto:</strong> Configuramos tu sistema para que puedas ver las cámaras en vivo desde tu celular o computadora en cualquier lugar del mundo.</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Mantenimiento y Corrección:</strong> Reparación de cámaras sin señal, reestructuración de cableado desordenado y ajustes de visión.</li>
+                <li>
+                    <i class="fa-solid fa-camera"></i>
+                    <strong>Instalación y Configuración</strong>
+                    <span>Montaje profesional de cámaras (Analógicas o IP) y configuración precisa de grabadores DVR/NVR, asegurando ángulos sin puntos ciegos.</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <strong>Monitoreo Remoto</strong>
+                    <span>Configuramos tu sistema de red para que puedas vigilar tus cámaras en vivo desde tu celular, tablet o computadora en cualquier parte del mundo.</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-tools"></i>
+                    <strong>Mantenimiento Correctivo</strong>
+                    <span>Reparación de cámaras que han perdido señal, reestructuración de cableado desordenado y ajustes de visión para sistemas ya existentes.</span>
+                </li>
             </ul>
         </div>
 
-        <div id="info-soporte" class="detail-box reveal">
-            <h3><i class="fa-solid fa-microchip"></i> Soporte a Equipos de Cómputo</h3>
-            <p style="color: var(--text-muted);">Alargamos la vida útil de tus equipos con intervenciones precisas a nivel hardware y software.</p>
+        <div id="detail-soporte" class="detail-content hidden">
+            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200" alt="Hardware PC" class="detail-img">
+            <h2>Soporte a <span>Equipos de Cómputo</span></h2>
+            <p>Alargamos la vida útil de tus equipos de trabajo o personales con intervenciones precisas a nivel de hardware y software, evitando fallos catastróficos y pérdida de información.</p>
             <ul class="detail-list">
-                <li><i class="fa-solid fa-check"></i> <strong>Mantenimiento Preventivo:</strong> Limpieza física profunda de componentes, cambio de pasta térmica de alta calidad y gestión de cables (cable management).</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Mantenimiento Correctivo:</strong> Diagnóstico de fallos, reemplazo de piezas dañadas y actualización de componentes (Ej. cambio de Disco Duro a SSD).</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Soporte de Software:</strong> Formateo, instalación de sistemas operativos, eliminación de virus, y optimización de Windows para un arranque más rápido.</li>
+                <li>
+                    <i class="fa-solid fa-fan"></i>
+                    <strong>Mantenimiento Preventivo</strong>
+                    <span>Limpieza física profunda de ventiladores y componentes, cambio de pasta térmica de alto rendimiento y gestión de cables (cable management).</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-microchip"></i>
+                    <strong>Actualización y Reparación</strong>
+                    <span>Diagnóstico de componentes que fallan, reemplazo de piezas dañadas y actualizaciones clave (como migrar de Disco Duro a SSD para mayor velocidad).</span>
+                </li>
+                <li>
+                    <i class="fa-brands fa-windows"></i>
+                    <strong>Asistencia en Software</strong>
+                    <span>Formateo seguro, instalación limpia de sistemas operativos, eliminación de malware, y optimización de inicio para un equipo mucho más rápido.</span>
+                </li>
             </ul>
         </div>
 
-        <div id="info-software" class="detail-box reveal">
-            <h3><i class="fa-solid fa-terminal"></i> Programas de Automatización</h3>
-            <p style="color: var(--text-muted);">Desarrollo de herramientas digitales prácticas (utilizando Python y Streamlit) para facilitar la administración diaria.</p>
+        <div id="detail-software" class="detail-content hidden">
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200" alt="Código Python" class="detail-img">
+            <h2>Programas de <span>Automatización</span></h2>
+            <p>Desarrollamos herramientas digitales prácticas, eficientes y seguras. Nos especializamos en crear soluciones con Python que eliminan el trabajo manual y aceleran la administración diaria de tu negocio.</p>
             <ul class="detail-list">
-                <li><i class="fa-solid fa-check"></i> <strong>Sistemas de Inventario:</strong> Aplicaciones limpias y fáciles de usar para registrar entradas, salidas y alertas de stock en tu negocio o farmacia.</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Gestión de Datos:</strong> Digitalización de procesos manuales, bases de datos de clientes y generación automática de reportes.</li>
-                <li><i class="fa-solid fa-check"></i> <strong>Soluciones a Medida:</strong> Si tienes una tarea repetitiva en tu computadora, creamos un script que la haga por ti en segundos.</li>
+                <li>
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <strong>Sistemas de Inventario</strong>
+                    <span>Aplicaciones intuitivas para registrar entradas, salidas y generar alertas de stock. Ideal para mantener el orden exacto en farmacias y comercios locales.</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-database"></i>
+                    <strong>Gestión de Datos</strong>
+                    <span>Olvídate del papel. Digitalizamos tus procesos manuales creando bases de datos de clientes y sistemas que generan reportes automáticamente.</span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-robot"></i>
+                    <strong>Scripts a Medida</strong>
+                    <span>Si tienes una tarea repetitiva en tu computadora, programamos una solución automatizada que la ejecute por ti en cuestión de segundos.</span>
+                </li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    <footer id="contacto">
+    <footer>
         <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad y Sistemas Digitales</p>
     </footer>
 
     <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios." class="whatsapp-float" target="_blank">
@@ -227,25 +268,34 @@
     </a>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
-            }
+        function showDetail(serviceId) {
+            // Ocultar vista principal
+            document.getElementById('main-view').classList.add('hidden');
+            
+            // Mostrar contenedor de detalles
+            document.getElementById('detail-view').classList.remove('hidden');
+            
+            // Ocultar todos los detalles individuales
+            const details = document.querySelectorAll('.detail-content');
+            details.forEach(detail => detail.classList.add('hidden'));
+            
+            // Mostrar solo el detalle seleccionado
+            document.getElementById('detail-' + serviceId).classList.remove('hidden');
+            
+            // Subir la pantalla hasta arriba
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        window.addEventListener("scroll", reveal);
-        reveal();
 
-        window.addEventListener("scroll", function() {
-            var nav = document.getElementById("navbar");
-            if (window.scrollY > 50) {
-                nav.classList.add("scrolled");
-            } else {
-                nav.classList.remove("scrolled");
-            }
-        });
+        function goHome() {
+            // Ocultar contenedor de detalles
+            document.getElementById('detail-view').classList.add('hidden');
+            
+            // Mostrar vista principal
+            document.getElementById('main-view').classList.remove('hidden');
+            
+            // Bajar un poco la pantalla a los servicios
+            document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
