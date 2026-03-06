@@ -25,193 +25,163 @@
             overflow-x: hidden;
         }
 
-        /* Nav Transparente */
+        /* 4. Menú Interactivo (Sticky Nav) */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: transparent; z-index: 1000;
+            transition: all 0.4s ease;
         }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-main); letter-spacing: 2px; text-transform: uppercase;}
+        nav.scrolled {
+            background: rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 50px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;}
         .logo span { color: var(--accent); }
+        
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section (Arriba) */
+        /* Hero Section (Corregido el texto) */
         header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(0, 246, 255, 0.1) 0%, rgba(3, 7, 18, 1) 70%), 
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 246, 255, 0.05) 0%, rgba(3, 7, 18, 1) 80%), 
                         url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070') no-repeat center center/cover;
             padding: 20px;
         }
-        
-        /* Animación de entrada para el título */
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeUp 1s ease-out forwards;
-            opacity: 0; transform: translateY(30px);
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: fadeUp 1s ease-out forwards; opacity: 0; transform: translateY(30px);
         }
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
-            animation: fadeUp 1s ease-out 0.3s forwards;
-            opacity: 0; transform: translateY(30px);
+        /* Caja oscura para que el texto sea 100% legible */
+        .subtitle-box {
+            background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; max-width: 700px;
+            margin-bottom: 40px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .subtitle { font-size: 1.1rem; color: #fff; line-height: 1.6; font-weight: 400; }
 
         .btn-primary {
-            padding: 15px 40px;
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            animation: fadeUp 1s ease-out 0.6s forwards;
-            opacity: 0; transform: translateY(30px);
+            padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.3s ease; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px);
+            box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
         }
-        .btn-primary:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 246, 255, 0.4);
-        }
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 246, 255, 0.6); transform: translateY(-5px); }
 
-        /* Secciones y Tarjetas */
+        /* Estructura General */
         section { padding: 100px 20px; max-width: 1200px; margin: auto; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-family: 'Space Grotesk', sans-serif;}
         .section-title span { color: var(--accent); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
         .card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 40px 30px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
+            backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden;
         }
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-        }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
         .card:hover::before { transform: scaleX(1); }
-        .card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(0, 246, 255, 0.3); }
-        
-        .card i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
-        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-color: rgba(0, 246, 255, 0.2); }
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+        .card h3 { font-size: 1.3rem; margin-bottom: 15px; }
         .card p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
 
-        /* Clases para animación al hacer scroll */
+        /* 2. Cobertura Geográfica Banner */
+        .coverage-banner {
+            background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+            border-top: 1px solid rgba(0, 246, 255, 0.2); border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+            padding: 30px 20px; text-align: center; margin-top: 50px;
+        }
+        .coverage-banner h3 { color: var(--text-main); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 10px;}
+
+        /* Animaciones */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* Botón WhatsApp */
+        
         .whatsapp-float {
-            position: fixed; bottom: 40px; right: 40px;
-            background: #25d366; color: white;
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 35px; text-decoration: none;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
-            z-index: 1000; transition: transform 0.3s ease;
-            animation: pulse 2s infinite;
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s;
         }
-        .whatsapp-float:hover { transform: scale(1.15) rotate(-10deg); animation: none; }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; color: var(--text-muted); }
-
-        /* Animaciones Keyframes */
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); } }
+        .whatsapp-float:hover { transform: scale(1.1); }
 
         @media (max-width: 768px) {
+            .nav-links { display: none; } /* Oculta links en celular para mantenerlo limpio */
             nav { padding: 20px; }
-            .whatsapp-float { bottom: 20px; right: 20px; }
         }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav id="navbar">
         <div class="logo">Zentry<span>nox</span></div>
+        <ul class="nav-links">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#portfolio">Casos de Éxito</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
     </nav>
 
     <header>
         <h1>Infraestructura <br> & Seguridad</h1>
-        <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento de hardware y soluciones digitales personalizadas para optimizar tu entorno.</p>
-        <a href="#servicios" class="btn-primary">Descubrir Soluciones</a>
+        <div class="subtitle-box">
+            <p class="subtitle">Especialistas en sistemas CCTV, ensambles profesionales, <strong>soporte técnico de software/hardware</strong> y soluciones digitales a medida para potenciar tu negocio.</p>
+        </div>
+        <a href="#servicios" class="btn-primary">Ver Servicios</a>
     </header>
 
+    <div class="coverage-banner reveal">
+        <h3><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Cobertura de Servicio Técnico en CDMX y Área Metropolitana</h3>
+    </div>
+
     <section id="servicios">
-        <h2 class="section-title reveal">Nuestros <span>Servicios</span></h2>
-        
+        <h2 class="section-title reveal">Servicios <span>Especializados</span></h2>
         <div class="grid">
             <div class="card reveal">
                 <i class="fa-solid fa-shield-halved"></i>
                 <h3>Sistemas CCTV</h3>
-                <p>Diseño e instalación de circuitos cerrados de televisión. Cableado estético, configuración de DVR/NVR y visualización remota en tiempo real desde cualquier dispositivo móvil.</p>
+                <p>Instalación estética de circuitos cerrados, configuración de DVR y monitoreo remoto seguro desde tu celular o computadora.</p>
             </div>
             
             <div class="card reveal" style="transition-delay: 0.1s;">
-                <i class="fa-solid fa-microchip"></i>
-                <h3>Soporte de Hardware</h3>
-                <p>Mantenimiento preventivo y correctivo para equipos de cómputo. Ensamblaje, gestión de cableado, limpieza de componentes y diagnósticos para un rendimiento óptimo.</p>
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>Soporte Técnico Integral</h3>
+                <p>Mantenimiento preventivo, limpieza profunda, solución a fallos de hardware y asistencia completa en software (sistemas operativos y programas).</p>
             </div>
             
             <div class="card reveal" style="transition-delay: 0.2s;">
-                <i class="fa-solid fa-code"></i>
-                <h3>Desarrollo & Gestión</h3>
-                <p>Creación de aplicaciones funcionales en Python para administración de inventarios, bases de datos de clientes y reportes automatizados ideales para locales comerciales.</p>
+                <i class="fa-solid fa-server"></i>
+                <h3>Ensambles Profesionales</h3>
+                <p>Armado de Workstations y computadoras de alto rendimiento enfocadas en productividad, arquitectura y trabajo pesado. Sin cuellos de botella.</p>
             </div>
         </div>
     </section>
 
-    <section id="stats" style="background: rgba(17, 24, 39, 0.3); border-radius: 30px; margin-bottom: 50px;">
-        <div class="grid reveal" style="text-align: center;">
-            <div>
-                <i class="fa-solid fa-check-circle" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h3 style="font-size: 1.2rem;">Arquitectura Limpia</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Instalaciones que respetan la estética de tu espacio.</p>
-            </div>
-            <div>
-                <i class="fa-solid fa-lock" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h3 style="font-size: 1.2rem;">Privacidad Total</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Configuraciones seguras para tu tranquilidad.</p>
-            </div>
-            <div>
-                <i class="fa-solid fa-bolt" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h3 style="font-size: 1.2rem;">Respuesta Rápida</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Soporte técnico eficiente cuando lo necesitas.</p>
+    <section id="portfolio" style="background: rgba(17, 24, 39, 0.3); border-radius: 30px; margin-bottom: 50px;">
+        <h2 class="section-title reveal" style="margin-bottom: 20px;">Casos de <span>Éxito</span></h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;" class="reveal">Desarrollamos herramientas digitales precisas para que los negocios locales tengan control total de su información.</p>
+        
+        <div class="grid reveal" style="max-width: 900px; margin: auto;">
+            <div class="card" style="border-left: 4px solid var(--accent); text-align: left;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <i class="fa-solid fa-file-code" style="margin: 0;"></i>
+                    <span style="background: rgba(0, 246, 255, 0.1); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Python & Streamlit</span>
+                </div>
+                <h3>Sistema de Gestión para Farmacias</h3>
+                <p>Aplicación a medida desarrollada para el control exacto de inventarios. Permite el registro ágil de entradas, salidas y alertas de stock, optimizando la administración diaria y reduciendo pérdidas de tiempo en el negocio.</p>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="contacto">
         <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad y Sistemas Digitales</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Sistemas Digitales</p>
     </footer>
 
     <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios." class="whatsapp-float" target="_blank">
@@ -219,19 +189,27 @@
     </a>
 
     <script>
+        // Animación de aparición al hacer scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
+                if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Para activar los elementos que ya están en pantalla al cargar
+        reveal();
+
+        // Menú que cambia de color al bajar (Sticky Nav)
+        window.addEventListener("scroll", function() {
+            var nav = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        });
     </script>
 </body>
 </html>
