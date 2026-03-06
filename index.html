@@ -26,22 +26,17 @@
             scroll-behavior: smooth;
         }
 
-        /* Utilidad para ocultar vistas */
         .hidden { display: none !important; }
 
-        /* Menú Interactivo */
+        /* Menú Ultra Limpio */
         nav {
             position: fixed; top: 0; width: 100%; padding: 20px 50px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: center; align-items: center; /* Centrado */
             background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer;}
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer;}
         .logo span { color: var(--accent); }
-        
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase; cursor: pointer;}
-        .nav-links a:hover { color: var(--accent); }
 
         /* Hero Section */
         header {
@@ -56,15 +51,13 @@
             animation: fadeUp 1s ease-out forwards;
         }
         .subtitle-box {
-            background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; max-width: 700px;
-            margin-bottom: 40px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 25px; max-width: 700px;
+            margin-bottom: 40px; animation: fadeUp 1s ease-out 0.3s forwards; opacity: 0; transform: translateY(30px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .subtitle { font-size: 1.1rem; color: #fff; line-height: 1.6; font-weight: 400; }
 
         .btn-primary {
-            padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
+            padding: 15px 40px; background: var(--accent); color: var(--bg-dark); border-radius: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
             transition: all 0.3s ease; animation: fadeUp 1s ease-out 0.6s forwards; opacity: 0; transform: translateY(30px); border: none; cursor: pointer;
         }
         .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 246, 255, 0.6); transform: translateY(-5px); }
@@ -76,13 +69,12 @@
         }
         .coverage-banner h3 { color: var(--text-main); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 10px;}
 
-        /* Estructura General */
+        /* Estructura Tarjetas */
         section { padding: 100px 20px; max-width: 1200px; margin: auto; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-family: 'Space Grotesk', sans-serif;}
         .section-title span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* Tarjetas Cliqueables */
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
             backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
@@ -95,7 +87,7 @@
         .card p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 20px; }
         .read-more { color: var(--accent); font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; }
 
-        /* VISTAS DE DETALLE (Páginas internas) */
+        /* VISTAS DE DETALLE */
         #detail-view { padding-top: 120px; min-height: 100vh; padding-bottom: 50px; max-width: 1000px; margin: auto; padding-left: 20px; padding-right: 20px; animation: fadeIn 0.5s ease; }
         
         .btn-back {
@@ -105,7 +97,14 @@
         }
         .btn-back:hover { background: var(--accent); color: var(--bg-dark); }
 
-        .detail-img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        /* Efecto Desvanecido para las imágenes */
+        .img-container { width: 100%; height: 450px; border-radius: 20px; margin-bottom: 40px; overflow: hidden; }
+        .detail-img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            /* Esto crea el efecto de desvanecido hacia el negro */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        }
         
         .detail-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--text-main); }
         .detail-content h2 span { color: var(--accent); }
@@ -117,20 +116,33 @@
         .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
         .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
 
+        /* SECCIÓN DE CASOS DE ÉXITO (Marquesina Infinita) */
+        .marquee-wrapper {
+            background: rgba(17, 24, 39, 0.5); border-top: 1px solid rgba(0, 246, 255, 0.2); border-bottom: 1px solid rgba(0, 246, 255, 0.2);
+            padding: 30px 0; overflow: hidden; position: relative; margin-top: 40px; margin-bottom: 40px;
+            /* Sombras a los lados para que parezca que entran y salen de la nada */
+            box-shadow: inset 50px 0 50px -50px var(--bg-dark), inset -50px 0 50px -50px var(--bg-dark);
+        }
+        .marquee-content { display: flex; width: max-content; animation: scrollMarquee 180s linear infinite; }
+        .marquee-content:hover { animation-play-state: paused; } /* Se pausa si el cliente pone el mouse encima */
+        .marquee-item {
+            background: rgba(3, 7, 18, 0.8); border: 1px solid rgba(255,255,255,0.05); padding: 15px 30px;
+            margin-right: 20px; border-radius: 50px; color: var(--text-main); font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem; display: flex; align-items: center; gap: 10px; white-space: nowrap;
+        }
+        .marquee-item i { color: var(--accent); }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* WhatsApp y Footer */
         .whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none;
             box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 20px; color: var(--text-muted); width: 100%; }
 
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; color: var(--text-muted); width: 100%; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            nav { padding: 20px; }
-            .detail-img { height: 250px; }
-        }
+        @media (max-width: 768px) { nav { padding: 20px; } .img-container { height: 250px; } }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -139,10 +151,6 @@
 
     <nav id="navbar">
         <div class="logo" onclick="goHome()">Zentry<span>nox</span></div>
-        <ul class="nav-links">
-            <li><a onclick="goHome()">Servicios</a></li>
-            <li><a onclick="goHome()">Especificaciones</a></li>
-        </ul>
     </nav>
 
     <div id="main-view">
@@ -158,7 +166,7 @@
             <h3><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Cobertura de Servicio Técnico en CDMX y Área Metropolitana</h3>
         </div>
 
-        <section id="servicios">
+        <section id="servicios" style="padding-bottom: 50px;">
             <h2 class="section-title">Servicios <span>Especializados</span></h2>
             <div class="grid">
                 <div class="card" onclick="showDetail('cctv')">
@@ -183,13 +191,21 @@
                 </div>
             </div>
         </section>
+
+        <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Casos de <span>Éxito</span></h2>
+        <div class="marquee-wrapper">
+            <div class="marquee-content" id="casos-track">
+                </div>
+        </div>
     </div>
 
     <div id="detail-view" class="hidden">
         <button class="btn-back" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i> Volver a los servicios</button>
 
         <div id="detail-cctv" class="detail-content hidden">
-            <img src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1655720828018-edd2daec9349?q=80&w=1200" alt="Instalación CCTV" class="detail-img">
+            </div>
             <h2>Sistemas de <span>Seguridad y CCTV</span></h2>
             <p>Protegemos tu patrimonio con tecnología de vanguardia. Nos enfocamos en realizar instalaciones limpias, estéticas y altamente funcionales para que tengas el control total desde la palma de tu mano.</p>
             <ul class="detail-list">
@@ -212,14 +228,16 @@
         </div>
 
         <div id="detail-soporte" class="detail-content hidden">
-            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200" alt="Hardware PC" class="detail-img">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1200" alt="Hardware PC" class="detail-img">
+            </div>
             <h2>Soporte a <span>Equipos de Cómputo</span></h2>
             <p>Alargamos la vida útil de tus equipos de trabajo o personales con intervenciones precisas a nivel de hardware y software, evitando fallos catastróficos y pérdida de información.</p>
             <ul class="detail-list">
                 <li>
                     <i class="fa-solid fa-fan"></i>
                     <strong>Mantenimiento Preventivo</strong>
-                    <span>Limpieza física profunda de ventiladores y componentes, cambio de pasta térmica de alto rendimiento y gestión de cables (cable management).</span>
+                    <span>Limpieza física profunda de ventiladores y componentes, cambio de pasta térmica de alto rendimiento y gestión de cables.</span>
                 </li>
                 <li>
                     <i class="fa-solid fa-microchip"></i>
@@ -235,14 +253,16 @@
         </div>
 
         <div id="detail-software" class="detail-content hidden">
-            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200" alt="Código Python" class="detail-img">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200" alt="Código Python" class="detail-img">
+            </div>
             <h2>Programas de <span>Automatización</span></h2>
             <p>Desarrollamos herramientas digitales prácticas, eficientes y seguras. Nos especializamos en crear soluciones con Python que eliminan el trabajo manual y aceleran la administración diaria de tu negocio.</p>
             <ul class="detail-list">
                 <li>
                     <i class="fa-solid fa-boxes-stacked"></i>
                     <strong>Sistemas de Inventario</strong>
-                    <span>Aplicaciones intuitivas para registrar entradas, salidas y generar alertas de stock. Ideal para mantener el orden exacto en farmacias y comercios locales.</span>
+                    <span>Aplicaciones intuitivas para registrar entradas, salidas y generar alertas de stock. Ideal para mantener el orden exacto en comercios locales.</span>
                 </li>
                 <li>
                     <i class="fa-solid fa-database"></i>
@@ -260,7 +280,7 @@
 
     <footer>
         <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad y Sistemas Digitales</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
     </footer>
 
     <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios." class="whatsapp-float" target="_blank">
@@ -268,32 +288,45 @@
     </a>
 
     <script>
+        // 1. Lógica para generar los 200 casos de éxito
+        const baseProjects = [
+            "Instalación de 8 cámaras en local comercial", "Mantenimiento preventivo a equipos de oficina", 
+            "Sistema de inventario automático en Python", "Armado de Workstation de alto rendimiento", 
+            "Configuración de acceso remoto para CCTV", "Migración de Discos Duros a SSD NVMe", 
+            "Desarrollo de script para gestión de datos", "Limpieza profunda y cambio de pasta térmica", 
+            "Instalación de grabador NVR de 16 canales", "Optimización de red y cableado estructurado", 
+            "Automatización de reportes de ventas", "Diagnóstico y reparación de placa base", 
+            "Actualización de sistema operativo y seguridad", "Soporte técnico a punto de venta", 
+            "Diseño de base de datos para comercio"
+        ];
+        
+        const track = document.getElementById('casos-track');
+        let htmlContent = '';
+        
+        // Creamos 200 elementos repitiendo la base
+        for(let i = 0; i < 200; i++) {
+            let project = baseProjects[i % baseProjects.length];
+            htmlContent += `<div class="marquee-item"><i class="fa-solid fa-check-circle"></i> Proyecto #${i + 101}: ${project}</div>`;
+        }
+        
+        // Duplicamos el contenido para que el carrusel sea infinito y no se corte
+        track.innerHTML = htmlContent + htmlContent;
+
+        // 2. Lógica de Navegación de las Tarjetas
         function showDetail(serviceId) {
-            // Ocultar vista principal
             document.getElementById('main-view').classList.add('hidden');
-            
-            // Mostrar contenedor de detalles
             document.getElementById('detail-view').classList.remove('hidden');
             
-            // Ocultar todos los detalles individuales
             const details = document.querySelectorAll('.detail-content');
             details.forEach(detail => detail.classList.add('hidden'));
             
-            // Mostrar solo el detalle seleccionado
             document.getElementById('detail-' + serviceId).classList.remove('hidden');
-            
-            // Subir la pantalla hasta arriba
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function goHome() {
-            // Ocultar contenedor de detalles
             document.getElementById('detail-view').classList.add('hidden');
-            
-            // Mostrar vista principal
             document.getElementById('main-view').classList.remove('hidden');
-            
-            // Bajar un poco la pantalla a los servicios
             document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
