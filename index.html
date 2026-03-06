@@ -315,10 +315,11 @@
                 </div>
 
                 <div>
-                    <form id="contactForm" action="https://formsubmit.co/ajax/luisangel.esquivel.armenta.a@gmail.com" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/ajax/a5456943b590a38a4add4e9f1d928359" method="POST">
                         
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="Cotización nueva - Zentry nox">
+                        <input type="hidden" name="_template" value="table">
 
                         <div class="form-group">
                             <label for="nombre">Nombre o Empresa</label>
@@ -474,16 +475,15 @@
             }
         });
 
-        // 5. NUEVO: Envío de formulario en segundo plano (NINJA MODE)
+        // 5. Envío de formulario en segundo plano (NINJA MODE)
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Evita que la página te saque de tu sitio web
+                e.preventDefault(); 
                 
                 const btn = this.querySelector('.btn-submit');
                 const originalText = btn.innerHTML;
                 
-                // Cambia el botón a modo carga
                 btn.innerHTML = 'Enviando... <i class="fa-solid fa-spinner fa-spin" style="margin-left: 10px;"></i>';
                 btn.style.opacity = '0.8';
                 btn.style.pointerEvents = 'none';
@@ -497,19 +497,14 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Muestra la alerta de éxito
                         alert("¡Tu solicitud se ha enviado con éxito! Nos pondremos en contacto contigo lo antes posible.");
-                        
-                        // Limpia el formulario
                         contactForm.reset();
                         detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
                         
-                        // Pone el botón en color verde de éxito
                         btn.innerHTML = '¡Enviado! <i class="fa-solid fa-check" style="margin-left: 10px;"></i>';
                         btn.style.background = '#25d366';
                         btn.style.color = '#fff';
                         
-                        // Regresa el botón a la normalidad después de 4 segundos
                         setTimeout(() => {
                             btn.innerHTML = originalText;
                             btn.style.background = 'var(--accent)';
