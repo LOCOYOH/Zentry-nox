@@ -84,10 +84,13 @@
         .section-title span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* Tarjetas Servicios */
+        /* Tarjetas Servicios (CON FIX PARA EL BUG DE RENDERIZADO) */
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
-            backdrop-filter: blur(10px); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
+            transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
+            transform: translateZ(0); /* ESTA ES LA LÍNEA QUE ARREGLA EL BUG */
+            backface-visibility: hidden; /* ESTA TAMBIÉN AYUDA AL FIX */
         }
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
         .card:hover::before { transform: scaleX(1); }
@@ -161,7 +164,7 @@
         .btn-submit { width: 100%; padding: 15px; background: var(--accent); color: var(--bg-dark); border: none; border-radius: 10px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-submit:hover { background: #fff; box-shadow: 0 5px 20px rgba(255,255,255,0.3); }
 
-        /* NUEVO: ESTILOS DEL POP-UP (MODAL) */
+        /* ESTILOS DEL POP-UP (MODAL) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(10px);
@@ -211,6 +214,7 @@
         .detail-list li i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
         .detail-list li span { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
 
+        /* Footer */
         footer { text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); width: 100%; background: #010308;}
         
         /* Animaciones */
@@ -259,14 +263,14 @@
                     <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
                 
-                <div class="card reveal" style="transition-delay: 0.1s;" onclick="showDetail('soporte')">
+                <div class="card reveal" onclick="showDetail('soporte')">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Soporte Técnico Integral</h3>
                     <p>Mantenimiento preventivo, limpieza profunda, solución a fallos de hardware y asistencia en software.</p>
                     <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
                 
-                <div class="card reveal" style="transition-delay: 0.2s;" onclick="showDetail('software')">
+                <div class="card reveal" onclick="showDetail('software')">
                     <i class="fa-solid fa-code"></i>
                     <h3>Automatización de Tareas</h3>
                     <p>Programas a medida para gestión de inventarios y procesos automáticos enfocados en comercios locales.</p>
@@ -283,12 +287,12 @@
                     <h3>Estética "Clean Look"</h3>
                     <p>Cero cables sueltos. Diseñamos rutas de cableado invisibles para respetar al máximo la arquitectura de tu espacio.</p>
                 </div>
-                <div class="card-static reveal" style="transition-delay: 0.1s;">
+                <div class="card-static reveal">
                     <i class="fa-solid fa-handshake-angle"></i>
                     <h3>Garantía Post-Venta</h3>
                     <p>No desaparecemos tras la instalación. Brindamos soporte técnico continuo para asegurar que tus sistemas nunca fallen.</p>
                 </div>
-                <div class="card-static reveal" style="transition-delay: 0.2s;">
+                <div class="card-static reveal">
                     <i class="fa-solid fa-lock"></i>
                     <h3>Privacidad Absoluta</h3>
                     <p>Tus bases de datos, contraseñas y circuitos de grabación son estrictamente confidenciales. Seguridad nivel corporativo.</p>
@@ -440,7 +444,7 @@
             
             <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20acabo%20de%20enviar%20un%20formulario%20de%20cotización." target="_blank" class="btn-modal-wa" onclick="closeModal()">
                 <i class="fa-brands fa-whatsapp"></i> 
-                <span>¡Recibido! Si tienes mucha prisa, también puedes confirmarnos tu solicitud por WhatsApp dando clic aquí.</span>
+                <span>¡Si tienes mucha prisa, confírmanos tu solicitud por WhatsApp dando clic aquí!</span>
             </a>
             
             <button class="btn-close-modal" onclick="closeModal()">Cerrar esta ventana</button>
@@ -530,7 +534,7 @@
             modal.classList.remove('active');
         }
 
-        // 6. Envío de formulario en segundo plano (NINJA MODE)
+        // 6. Envío de formulario en segundo plano
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
@@ -552,19 +556,19 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // 1. Mostrar el Pop-up bonito
+                        // Muestra el Pop-up de confirmación
                         modal.classList.add('active');
                         
-                        // 2. Limpiar el formulario
+                        // Limpia el formulario
                         contactForm.reset();
                         detallesTextarea.placeholder = "Selecciona un servicio arriba para ver un ejemplo...";
                         
-                        // 3. Restaurar el botón original
+                        // Restaura el botón
                         btn.innerHTML = originalText;
                         btn.style.opacity = '1';
                         btn.style.pointerEvents = 'auto';
                     } else {
-                        throw new Error('Network response was not ok.');
+                        throw new Error('Error en la red.');
                     }
                 })
                 .catch(error => {
