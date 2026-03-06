@@ -3,75 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistemas Integrales IT | Soluciones Tecnológicas</title>
+    <title>Zentry nox | Seguridad y Soporte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #1e293b;
-            --accent: #38bdf8;
-            --text: #f8fafc;
+            --bg: #0a0f1d;
+            --card: #161e2e;
+            --accent: #00d4ff;
+            --text: #e2e8f0;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            line-height: 1.6;
+            scroll-behavior: smooth;
         }
         header {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.8)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000');
+            background: linear-gradient(rgba(10, 15, 29, 0.7), rgba(10, 15, 29, 0.9)), 
+                        url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=2070');
             background-size: cover;
+            padding: 20px;
         }
-        .container { padding: 2rem; max-width: 1000px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        .card { background: var(--card); padding: 1.5rem; border-radius: 12px; border-bottom: 4px solid var(--accent); }
-        h1 { font-size: 3rem; margin-bottom: 0; color: var(--accent); }
-        .btn {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 10px 25px;
+        h1 { font-size: 4rem; margin: 0; color: var(--accent); letter-spacing: -2px; }
+        .tagline { font-size: 1.2rem; opacity: 0.8; margin-bottom: 30px; }
+        
+        .container { padding: 80px 20px; max-width: 1100px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        
+        .card { 
+            background: var(--card); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        .card h3 { color: var(--text); margin-top: 0; }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
+            transition: all 0.3s ease;
         }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+
+        footer { text-align: center; padding: 40px; opacity: 0.6; font-size: 0.9rem; }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Sistemas Integrales IT</h1>
-        <p>Seguridad CCTV • Hardware de Alto Rendimiento • Software a Medida</p>
-        <a href="#contacto" class="btn">Solicitar Cotización</a>
+        <h1>Zentry nox</h1>
+        <p class="tagline">Expertos en Seguridad CCTV y Soporte Técnico Integral</p>
+        <a href="#servicios" style="color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 12px 25px; border-radius: 5px; font-weight: bold;">Ver Servicios</a>
     </header>
 
-    <div class="container">
-        <h2 style="text-align: center;">Nuestros Servicios</h2>
+    <div class="container" id="servicios">
         <div class="grid">
             <div class="card">
-                <h3>Vigilancia CCTV</h3>
-                <p>Instalación de cámaras de seguridad con acceso remoto desde tu celular. Protege lo que más quieres.</p>
+                <i class="fas fa-shield-alt"></i>
+                <h3>Sistemas de Seguridad</h3>
+                <p>Instalación y configuración de cámaras CCTV. Vigilancia profesional para que cuides tu negocio o casa desde tu celular en cualquier lugar.</p>
             </div>
             <div class="card">
-                <h3>Hardware & Gaming</h3>
-                <p>Ensamble de PC, mantenimiento preventivo y diagnóstico de componentes. Potencia sin límites.</p>
+                <i class="fas fa-microchip"></i>
+                <h3>Soporte y Hardware</h3>
+                <p>Mantenimiento preventivo y correctivo de computadoras. Limpieza profunda, optimización y diagnóstico para que tu equipo vuele.</p>
             </div>
             <div class="card">
-                <h3>Desarrollo de Software</h3>
-                <p>Creamos herramientas en Python para gestionar tu negocio, inventarios y procesos automáticos.</p>
+                <i class="fas fa-laptop-code"></i>
+                <h3>Soluciones Digitales</h3>
+                <p>Asistencia técnica en software, instalación de programas y pequeñas herramientas personalizadas para mejorar tu flujo de trabajo.</p>
             </div>
         </div>
     </div>
 
-    <footer id="contacto" style="text-align: center; padding: 3rem; background: #020617;">
-        <p>¿Listo para llevar tu tecnología al siguiente nivel?</p>
-        <p>Contacta vía WhatsApp: <strong>[Tu Número Aquí]</strong></p>
+    <footer>
+        <p>&copy; 2026 Zentry nox. Soluciones Tecnológicas.</p>
     </footer>
+
+    <a href="https://wa.me/525621597084?text=Hola%20Zentry%20nox,%20me%20gustaría%20solicitar%20una%20cotización." class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
 </body>
 </html>
