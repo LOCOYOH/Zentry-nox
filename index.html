@@ -84,12 +84,12 @@
         .section-title span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
-        /* Tarjetas Servicios */
+        /* Tarjetas Servicios (CON FIX PARA EL BUG DE RENDERIZADO) */
         .card {
             background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 40px 30px;
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
             transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; cursor: pointer;
-            transform: translateZ(0); backface-visibility: hidden;
+            transform: translateZ(0); backface-visibility: hidden; 
         }
         .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
         .card:hover::before { transform: scaleX(1); }
@@ -236,13 +236,12 @@
             .contact-wrapper { grid-template-columns: 1fr; padding: 30px; } 
             .btn-whatsapp-large { width: 100%; }
         }
-        /* AQUI SE OCULTA EL QR EN CELULARES */
         @media (max-width: 768px) { 
             nav { padding: 20px; } 
             .img-container { height: 250px; } 
             .case-card { width: 300px; padding: 20px; } 
             .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; } 
-            .qr-box { display: none; } 
+            .qr-box { display: none; } /* OCULTA EL QR EN CELULARES */
         }
     </style>
 </head>
@@ -256,7 +255,7 @@
         <header>
             <h1>Infraestructura <br> & Seguridad</h1>
             <div class="subtitle-box">
-                <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento de hardware, software en equipo de computo y programas de automatización a medida para potenciar tu entorno.</p>
+                <p class="subtitle">Especialistas en sistemas CCTV, mantenimiento preventivo de hardware y soluciones de redes para proteger y potenciar tu entorno.</p>
             </div>
             
             <div class="hero-buttons">
@@ -282,14 +281,14 @@
                 <div class="card reveal" onclick="showDetail('soporte')">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Soporte Técnico Integral</h3>
-                    <p>Mantenimiento preventivo, limpieza profunda, solución a fallos de hardware y asistencia en software.</p>
+                    <p>Mantenimiento preventivo, limpieza profunda, solución a fallos de hardware y actualización de componentes.</p>
                     <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
                 
-                <div class="card reveal" onclick="showDetail('software')">
-                    <i class="fa-solid fa-code"></i>
-                    <h3>Automatización de Tareas</h3>
-                    <p>Programas a medida para gestión de inventarios y procesos automáticos enfocados en comercios locales.</p>
+                <div class="card reveal" onclick="showDetail('redes')">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <h3>Redes y Conectividad</h3>
+                    <p>Cableado estructurado, configuración de routers y ampliación de señal Wi-Fi para máxima velocidad.</p>
                     <span class="read-more">Ver información <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
             </div>
@@ -311,7 +310,7 @@
                 <div class="card-static reveal">
                     <i class="fa-solid fa-lock"></i>
                     <h3>Privacidad Absoluta</h3>
-                    <p>Tus bases de datos, contraseñas y circuitos de grabación son estrictamente confidenciales. Seguridad nivel corporativo.</p>
+                    <p>Tus redes, contraseñas y circuitos de grabación son estrictamente confidenciales. Seguridad nivel corporativo.</p>
                 </div>
             </div>
         </section>
@@ -322,7 +321,7 @@
             <div class="gallery-grid reveal">
                 <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800" alt="Cableado estructurado" class="gallery-img">
                 <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?q=80&w=800" alt="Placa base limpia" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800" alt="Código limpio" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?q=80&w=800" alt="Optimización de hardware" class="gallery-img">
             </div>
         </section>
 
@@ -335,7 +334,7 @@
         <div class="tech-bar reveal">
             <p style="color: var(--accent); margin-bottom: 30px; font-weight: bold; letter-spacing: 2px;">ESPECIALISTAS Y COMPATIBILIDAD CON:</p>
             <div class="tech-icons">
-                <span><i class="fa-brands fa-python"></i> Python</span>
+                <span><i class="fa-solid fa-wifi"></i> Redes & Wi-Fi</span>
                 <span><i class="fa-brands fa-windows"></i> Windows</span>
                 <span><i class="fa-solid fa-microchip"></i> Intel / AMD</span>
                 <span><i class="fa-solid fa-video"></i> Hikvision / Dahua</span>
@@ -401,7 +400,7 @@
                                 <option value="">Selecciona un servicio...</option>
                                 <option value="CCTV">Sistemas de Seguridad CCTV</option>
                                 <option value="Soporte PC">Soporte a Equipos de Cómputo</option>
-                                <option value="Software">Automatización y Software</option>
+                                <option value="Redes">Redes e Internet Wi-Fi</option>
                                 <option value="Otro">Otro servicio / Consultoría</option>
                             </select>
                         </div>
@@ -446,16 +445,16 @@
             </ul>
         </div>
 
-        <div id="detail-software" class="detail-content hidden">
+        <div id="detail-redes" class="detail-content hidden">
             <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200" alt="Código Python" class="detail-img">
+                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1200" alt="Cableado de red" class="detail-img">
             </div>
-            <h2>Programas de <span>Automatización</span></h2>
-            <p>Desarrollamos herramientas digitales prácticas, eficientes y seguras. Nos especializamos en crear soluciones con Python que eliminan el trabajo manual y aceleran la administración diaria de tu negocio.</p>
+            <h2>Redes y <span>Conectividad</span></h2>
+            <p>Aseguramos que tu conexión a internet sea rápida, estable y llegue a cada rincón de tu espacio sin interrupciones, garantizando el flujo de trabajo de tu hogar o empresa.</p>
             <ul class="detail-list">
-                <li><i class="fa-solid fa-boxes-stacked"></i><strong>Sistemas de Inventario</strong><span>Aplicaciones intuitivas para registrar entradas, salidas y generar alertas de stock. Ideal para mantener el orden exacto en comercios locales.</span></li>
-                <li><i class="fa-solid fa-database"></i><strong>Gestión de Datos</strong><span>Olvídate del papel. Digitalizamos tus procesos manuales creando bases de datos de clientes y sistemas que generan reportes automáticamente.</span></li>
-                <li><i class="fa-solid fa-robot"></i><strong>Scripts a Medida</strong><span>Si tienes una tarea repetitiva en tu computadora, programamos una solución automatizada que la ejecute por ti en cuestión de segundos.</span></li>
+                <li><i class="fa-solid fa-diagram-project"></i><strong>Cableado Estructurado</strong><span>Diseño e instalación de nodos de red alámbrica (cable UTP) para conectar equipos de escritorio, impresoras o Smart TVs con la máxima velocidad posible.</span></li>
+                <li><i class="fa-solid fa-wifi"></i><strong>Ampliación Wi-Fi</strong><span>Instalación de Access Points (Puntos de acceso) y redes Mesh para eliminar zonas muertas y llevar internet potente a lugares alejados del módem principal.</span></li>
+                <li><i class="fa-solid fa-server"></i><strong>Gestión de Red</strong><span>Configuración de routers, switches, administración de ancho de banda y seguridad de red para proteger a los usuarios conectados.</span></li>
             </ul>
         </div>
     </div>
@@ -477,7 +476,7 @@
 
     <footer>
         <p>&copy; 2026 ZENTRY NOX • CDMX, MÉXICO</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Soluciones de Software</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ingeniería en Seguridad, Hardware y Redes de Comunicación</p>
     </footer>
 
     <script>
@@ -493,11 +492,11 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // 2. Generador de Casos de Éxito
+        // 2. Generador de Casos de Éxito (ACTUALIZADO PARA REDES)
         const cctvTemplates = ["Instalación de [COUNT] cámaras IP 4K con monitoreo centralizado en centro logístico.", "Configuración de NVR de 32 canales y acceso remoto seguro para cadena de farmacias.", "Mantenimiento correctivo a sistema CCTV existente en oficinas corporativas, reestructurando cableado desordenado.", "Implementación de cámaras térmicas para control de acceso en bodega industrial.", "Ajuste de ángulos de visión y optimización de grabación nocturna para [COUNT] cámaras en local comercial."];
         const pcTemplates = ["Mantenimiento preventivo completo a [COUNT] equipos de oficina, incluyendo cambio de pasta térmica profunda.", "Actualización masiva de [COUNT] PCs en despacho de contadores, migrando de HDD a SSD para alto rendimiento.", "Diagnóstico y reparación de placa base a Workstation profesional en despacho de contadores, restaurando operatividad.", "Limpieza física y optimización de software a servidor crítico en clínica médica Sur.", "Ensamblaje y configuración de [COUNT] estaciones de trabajo enfocadas en arquitectura para oficinas corporativas Reforma."];
-        const swTemplates = ["Desarrollo de software en Python para control de stock en tiempo real con alertas de reabastecimiento para centro logístico.", "Automatización de reportes de ventas y conciliación de inventario para comercio local en Polanco.", "Digitalización completa de base de datos de clientes y procesos administrativos para local comercial Polanco.", "Creación de script personalizado para automatizar [COUNT] tareas repetitivas diarias en local comercial.", "Soporte de software avanzado e instalación limpia de sistemas operativos para [COUNT] equipos de clínica médica."];
-        const genericContexts = ["Optimizando la seguridad operativa diaria.", "Asegurando la continuidad del negocio.", "Reduciendo tiempos de inactividad técnica.", "Incrementando la eficiencia administrativa.", "Garantizando la integridad de los datos."];
+        const netTemplates = ["Instalación de [COUNT] nodos de red de alta velocidad en nuevas oficinas.", "Configuración de sistema Wi-Fi Mesh para casa residencial de 3 pisos, eliminando zonas sin señal.", "Reestructuración de rack de comunicaciones y peinado de cables para [COUNT] equipos de escritorio.", "Mantenimiento preventivo a site de servidores y switches comerciales.", "Extensión de cableado estructurado UTP para [COUNT] puntos de venta en nueva sucursal."];
+        const genericContexts = ["Optimizando la seguridad operativa diaria.", "Asegurando la continuidad del negocio.", "Reduciendo tiempos de inactividad técnica.", "Mejorando la comunicación interna.", "Garantizando la integridad de los datos."];
         
         const track = document.getElementById('casos-track');
         let htmlContent = '';
@@ -508,7 +507,7 @@
             const type = Math.floor(Math.random() * 3);
             if(type === 0) { project = cctvTemplates[Math.floor(Math.random() * cctvTemplates.length)].replace("[COUNT]", count); icon = '<i class="fa-solid fa-video"></i>'; }
             else if(type === 1) { project = pcTemplates[Math.floor(Math.random() * pcTemplates.length)].replace("[COUNT]", count); icon = '<i class="fa-solid fa-microchip"></i>'; }
-            else { project = swTemplates[Math.floor(Math.random() * swTemplates.length)].replace("[COUNT]", count); icon = '<i class="fa-solid fa-terminal"></i>'; }
+            else { project = netTemplates[Math.floor(Math.random() * netTemplates.length)].replace("[COUNT]", count); icon = '<i class="fa-solid fa-network-wired"></i>'; }
 
             htmlContent += `<div class="case-card"><div class="case-card-header">${icon} Proyecto #${i + 101}</div><p><strong>Descripción:</strong> ${project}</p><p><strong>Impacto:</strong> ${context}</p></div>`;
         }
@@ -529,7 +528,7 @@
             document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 4. Lógica de Cambio Dinámico de Texto
+        // 4. Lógica de Cambio Dinámico de Texto (ACTUALIZADA)
         const servicioSelect = document.getElementById('servicio');
         const detallesTextarea = document.getElementById('detalles');
 
@@ -541,8 +540,8 @@
                 case 'Soporte PC':
                     detallesTextarea.placeholder = "Ej. Tengo 3 computadoras que están lentas y necesitan limpieza física y de software...";
                     break;
-                case 'Software':
-                    detallesTextarea.placeholder = "Ej. Busco un sistema en Python para automatizar un proceso repetitivo...";
+                case 'Redes':
+                    detallesTextarea.placeholder = "Ej. Necesito instalar cableado de red para 5 computadoras o mejorar la señal de mi Wi-Fi...";
                     break;
                 case 'Otro':
                     detallesTextarea.placeholder = "Por favor, describe a detalle lo que tienes en mente para que podamos ayudarte...";
